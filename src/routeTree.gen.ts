@@ -9,38 +9,168 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardStudyRouteImport } from './routes/dashboard.study'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
+import { Route as DashboardLibraryRouteImport } from './routes/dashboard.library'
+import { Route as DashboardGamificationRouteImport } from './routes/dashboard.gamification'
+import { Route as DashboardClassesRouteImport } from './routes/dashboard.classes'
+import { Route as DashboardChatRouteImport } from './routes/dashboard.chat'
+import { Route as DashboardCalendarRouteImport } from './routes/dashboard.calendar'
+import { Route as DashboardAdminRouteImport } from './routes/dashboard.admin'
 
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardStudyRoute = DashboardStudyRouteImport.update({
+  id: '/study',
+  path: '/study',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardLibraryRoute = DashboardLibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardGamificationRoute = DashboardGamificationRouteImport.update({
+  id: '/gamification',
+  path: '/gamification',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardClassesRoute = DashboardClassesRouteImport.update({
+  id: '/classes',
+  path: '/classes',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardChatRoute = DashboardChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardCalendarRoute = DashboardCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAdminRoute = DashboardAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => DashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/dashboard/admin': typeof DashboardAdminRoute
+  '/dashboard/calendar': typeof DashboardCalendarRoute
+  '/dashboard/chat': typeof DashboardChatRoute
+  '/dashboard/classes': typeof DashboardClassesRoute
+  '/dashboard/gamification': typeof DashboardGamificationRoute
+  '/dashboard/library': typeof DashboardLibraryRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/study': typeof DashboardStudyRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard/admin': typeof DashboardAdminRoute
+  '/dashboard/calendar': typeof DashboardCalendarRoute
+  '/dashboard/chat': typeof DashboardChatRoute
+  '/dashboard/classes': typeof DashboardClassesRoute
+  '/dashboard/gamification': typeof DashboardGamificationRoute
+  '/dashboard/library': typeof DashboardLibraryRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/study': typeof DashboardStudyRoute
+  '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/dashboard/admin': typeof DashboardAdminRoute
+  '/dashboard/calendar': typeof DashboardCalendarRoute
+  '/dashboard/chat': typeof DashboardChatRoute
+  '/dashboard/classes': typeof DashboardClassesRoute
+  '/dashboard/gamification': typeof DashboardGamificationRoute
+  '/dashboard/library': typeof DashboardLibraryRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/study': typeof DashboardStudyRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/dashboard/admin'
+    | '/dashboard/calendar'
+    | '/dashboard/chat'
+    | '/dashboard/classes'
+    | '/dashboard/gamification'
+    | '/dashboard/library'
+    | '/dashboard/settings'
+    | '/dashboard/study'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/dashboard/admin'
+    | '/dashboard/calendar'
+    | '/dashboard/chat'
+    | '/dashboard/classes'
+    | '/dashboard/gamification'
+    | '/dashboard/library'
+    | '/dashboard/settings'
+    | '/dashboard/study'
+    | '/dashboard'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/dashboard/admin'
+    | '/dashboard/calendar'
+    | '/dashboard/chat'
+    | '/dashboard/classes'
+    | '/dashboard/gamification'
+    | '/dashboard/library'
+    | '/dashboard/settings'
+    | '/dashboard/study'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +178,103 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/study': {
+      id: '/dashboard/study'
+      path: '/study'
+      fullPath: '/dashboard/study'
+      preLoaderRoute: typeof DashboardStudyRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/library': {
+      id: '/dashboard/library'
+      path: '/library'
+      fullPath: '/dashboard/library'
+      preLoaderRoute: typeof DashboardLibraryRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/gamification': {
+      id: '/dashboard/gamification'
+      path: '/gamification'
+      fullPath: '/dashboard/gamification'
+      preLoaderRoute: typeof DashboardGamificationRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/classes': {
+      id: '/dashboard/classes'
+      path: '/classes'
+      fullPath: '/dashboard/classes'
+      preLoaderRoute: typeof DashboardClassesRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/chat': {
+      id: '/dashboard/chat'
+      path: '/chat'
+      fullPath: '/dashboard/chat'
+      preLoaderRoute: typeof DashboardChatRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/calendar': {
+      id: '/dashboard/calendar'
+      path: '/calendar'
+      fullPath: '/dashboard/calendar'
+      preLoaderRoute: typeof DashboardCalendarRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/admin': {
+      id: '/dashboard/admin'
+      path: '/admin'
+      fullPath: '/dashboard/admin'
+      preLoaderRoute: typeof DashboardAdminRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
 
+interface DashboardRouteChildren {
+  DashboardAdminRoute: typeof DashboardAdminRoute
+  DashboardCalendarRoute: typeof DashboardCalendarRoute
+  DashboardChatRoute: typeof DashboardChatRoute
+  DashboardClassesRoute: typeof DashboardClassesRoute
+  DashboardGamificationRoute: typeof DashboardGamificationRoute
+  DashboardLibraryRoute: typeof DashboardLibraryRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardStudyRoute: typeof DashboardStudyRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardAdminRoute: DashboardAdminRoute,
+  DashboardCalendarRoute: DashboardCalendarRoute,
+  DashboardChatRoute: DashboardChatRoute,
+  DashboardClassesRoute: DashboardClassesRoute,
+  DashboardGamificationRoute: DashboardGamificationRoute,
+  DashboardLibraryRoute: DashboardLibraryRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardStudyRoute: DashboardStudyRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
