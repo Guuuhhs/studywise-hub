@@ -18,7 +18,7 @@ import { useState } from "react";
 
 const navItems = [
   { title: "Dashboard", to: "/dashboard", icon: LayoutDashboard },
-  { title: "Turmas", to: "/dashboard/classes", icon: Users },
+  { title: "Cursos", to: "/dashboard/classes", icon: Users },
   { title: "Biblioteca", to: "/dashboard/library", icon: BookOpen },
   { title: "Estudo", to: "/dashboard/study", icon: FileText },
   { title: "Calendário", to: "/dashboard/calendar", icon: Calendar },

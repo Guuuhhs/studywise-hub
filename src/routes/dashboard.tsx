@@ -1,6 +1,7 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { AppSidebar } from "@/components/AppSidebar";
-import { Bell, Search } from "lucide-react";
+import { Search } from "lucide-react";
+import { NotificationCenter } from "@/components/NotificationCenter";
 
 export const Route = createFileRoute("/dashboard")({
   component: DashboardLayout,
@@ -22,10 +23,7 @@ function DashboardLayout() {
             />
           </div>
           <div className="flex items-center gap-3">
-            <button className="relative w-9 h-9 rounded-lg hover:bg-muted flex items-center justify-center transition-colors text-muted-foreground hover:text-foreground">
-              <Bell className="w-4 h-4" />
-              <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-destructive" />
-            </button>
+            <NotificationCenter />
             <div className="w-8 h-8 rounded-full gradient-primary flex items-center justify-center">
               <span className="text-xs font-bold text-primary-foreground">A</span>
             </div>
